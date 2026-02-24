@@ -1,17 +1,8 @@
-const express = require("express");
-const mongoose = require("mongoose");
+require("dotenv").config();
+const connectDB = require("./src/config/db");
+const app = require("./src/app");
 
-const app = express();
-
-// connect to MongoDB
-mongoose
-  .connect("mongodb://127.0.0.1:27017/uj_lms")
-  .then(() => console.log("MongoDB connected"))
-  .catch((err) => console.log(err));
-
-app.get("/", (req, res) => {
-  res.send("Backend + Database working");
-});
+connectDB();
 
 app.listen(5000, () => {
   console.log("Server running on port 5000");
